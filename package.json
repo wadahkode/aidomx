@@ -1,6 +1,10 @@
 {
   "name": "aidomx",
   "version": "1.0.0",
+  "author": {
+    "name": "wadahkode",
+    "email": "mvp.dedefilaras@gmail.com"
+  },
   "type": "module",
   "files": [
     "dist",
