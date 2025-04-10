@@ -1,43 +1,30 @@
-//import { parse } from './core/parser'
-//import { transform } from './core/transformer'
-//import { writeCSS } from './core/writer'
-//import { setupAiCss } from './runtime/setup'
-//import { AIStore } from './runtime/store'
-//import { readAIDOMXFile } from './utils/fileReader'
+/**
+ * Titik awal dari pustaka AIDOMX.
+ *
+ * File ini bertanggung jawab memulai proses inisialisasi AIDOMX berdasarkan environment.
+ * Secara default, akan berjalan di browser menggunakan konfigurasi standar.
+ * Framework lain seperti React atau Vue bisa diintegrasikan melalui sistem environment modular.
+ *
+ * Cocok digunakan pada proyek frontend modern yang ingin mendukung AI-driven styling
+ * secara fleksibel dan scalable.
+ *
+ * @file src/index.ts
+ * @created 2024-04-07
+ * @author WadahKode
+ * @project AIDOMX
+ * @license MIT
+ * @contact github.com/wadahkode
+ */
 
-//async function Aidomx(filePath?: string) {
-//try {
-//const rawContent = await readAIDOMXFile(filePath)
+import { startWithEnvironment } from './environments'
 
-//// Proses AI-CSS menjadi struktur data, dan secara otomatis menyimpan ke AIStore
-//const parsed = parse(rawContent)
-
-//// (Opsional) Gunakan data dari AIStore untuk debugging atau pemrosesan lebih lanjut
-//console.log('AIStore data:', AIStore.getAll())
-
-//// Terapkan konfigurasi AI-css
-//setupAiCss()
-
-//// Lakukan transformasi aturan menjadi CSS standar
-//const transformed = transform(parsed)
-
-//// Tulis hasilnya ke file output
-//writeCSS('playground/css/output.css', transformed)
-
-//console.log('✅ AI-CSS berhasil dikompilasi!')
-//} catch (error: any) {
-//console.error('Compile failed: ', error.message)
-//}
-//}
-
-//export { Aidomx }
-
-import { loadAIDOMX, applyAIDOMX, watchAIDOMX } from './loader'
-
-async function main() {
-  const config = await loadAIDOMX('globals')
-  if (config) applyAIDOMX(config)
-  watchAIDOMX()
+// Default: menjalankan AIDOMX di lingkungan browser
+if (typeof window !== 'undefined') {
+  startWithEnvironment()
 }
 
-main()
+export * from './core'
+export * from './environments'
+export * from './hooks'
+export type { AIDOMXConfig, Component, Config, Data, Rules } from './types'
+export * from './utils/cookie'

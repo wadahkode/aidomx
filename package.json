@@ -1,25 +1,25 @@
 {
   "name": "aidomx",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "files": [
     "dist",
     "README.md",
-    "aidomx.config.json"
+    "LICENSE"
   ],
-  "main": "dist/aidomx.min.js",
-  "module": "dist/aidomx.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "exports": {
     ".": {
-      "import": "./dist/aidomx.js",
-      "require": "./dist/aidomx.min.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
   "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rm -rf dist",
     "dev": "vite dev",
-    "build": "npm run clean && vite build && tsc",
+    "build": "npm run clean && vite build && tsup",
     "test": "jest",
     "prepublishOnly": "npm run build"
   },
@@ -30,9 +30,15 @@
     "path-browserify": "^1.0.1",
     "terser": "^5.39.0",
     "ts-jest": "^29.3.0",
+    "tsup": "^8.4.0",
     "typescript": "^5.4.0",
     "vite": "^6.2.5"
   },
+  "keywords": [
+    "dom",
+    "ai",
+    "style"
+  ],
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node"

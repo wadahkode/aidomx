@@ -1,12 +1,12 @@
 import { Plugin } from 'vite'
-import { transformAIDOMX } from '../src/transformer'
 import path from 'path-browserify'
+import { useTransformer } from '../src'
 
-interface AIDOMXOptions {
+interface Options {
   dir?: string // Direktori file .aidomx
 }
 
-export default function AidomxPlugin(options: AIDOMXOptions = {}): Plugin {
+export default function AidomxPlugin(options: Options = {}): Plugin {
   const aidomxDir = options.dir || ''
 
   return {
@@ -25,7 +25,7 @@ export default function AidomxPlugin(options: AIDOMXOptions = {}): Plugin {
     },
     transform(code: string, id: string) {
       if (id.startsWith(path.resolve(aidomxDir)) && id.endsWith('.aidomx')) {
-        return transformAIDOMX(code)
+        return useTransformer(code)
       }
     },
   }
