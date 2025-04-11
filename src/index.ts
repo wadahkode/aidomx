@@ -19,7 +19,9 @@
 import { startWithEnvironment } from './environments'
 
 // Default: menjalankan AIDOMX di lingkungan browser
-if (typeof window !== 'undefined') {
+// Hindari menjalankan secara otomatis dilingkungan
+// Framework seperti NEXTJS, dkk.
+if (typeof window !== 'undefined' && typeof process === 'undefined') {
   startWithEnvironment()
 }
 
